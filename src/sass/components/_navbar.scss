@@ -1,0 +1,102 @@
+.navbar {
+  height: 83px;
+  overflow: hidden;
+  border-bottom: 1px solid $light-grey;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  .logo-img {
+    height: 26px;
+  }
+
+  .menu-left {
+    display: flex;
+    align-items: center;
+    ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        position: relative;
+        font-size: 15px;
+        color: $dark-greyish-blue;
+        line-height: 26px;
+        margin-right: 2rem;
+
+        &:first-child {
+          margin-left: 4rem;
+        }
+
+        // Hover Effect Using Pseudo-Element
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -28px; // border rests at bottom of nav bar
+          left: 0;
+          width: 100%;
+          height: 4px;
+          background: $orange;
+          opacity: 0;
+          transition: opacity 0.2s ease-in-out;
+        }
+
+        &:hover::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .menu-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+
+    .cart {
+      position: relative;
+
+      .cart-icon {
+        height: 20px;
+      }
+
+      .cart-quantity {
+        height: 13px;
+        width: 19px;
+        background-color: $orange;
+        color: $white;
+        font-size: 10px;
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        border-radius: 45%;
+        position: absolute;
+        top: -5px;
+        right: -8px;
+      }
+
+      svg {
+        fill: $dark-greyish-blue;
+        transition: fill 0.2s ease-in-out;
+
+        &:hover {
+          fill: $very-dark-blue;
+        }
+      }
+    }
+
+    .profile-photo {
+      height: 50px;
+      margin-left: 3rem;
+      border-radius: 100%;
+      border: 2px solid transparent;
+      transition: border 0.2s ease-out;
+
+      &:hover {
+        border: 2px solid $orange;
+      }
+    }
+  }
+}
