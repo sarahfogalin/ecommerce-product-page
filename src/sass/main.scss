@@ -1,8 +1,6 @@
-@import "abstracts/variables";
+@use "base/base";
+@use "base/typography";
 
-@import "base/base";
-@import "base/typography";
+@use "components/navbar";
 
-@import "components/navbar";
-
-@import "pages/home";
+@use "pages/home";
