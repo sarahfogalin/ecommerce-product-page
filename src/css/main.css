@@ -102,6 +102,21 @@ body {
   border: 2px solid #ff7d1a;
 }
 
+@media only screen and (min-width: 1120px) {
+  .navbar .hamburger-icon {
+    display: none;
+  }
+}
+@media only screen and (max-width: 1119px) {
+  .navbar .hamburger-icon {
+    all: unset;
+    padding-right: 15px;
+    padding-top: 3px;
+  }
+  .navbar .menu-left .pages {
+    display: none;
+  }
+}
 .container {
   padding: 1.7rem 10.3rem;
 }

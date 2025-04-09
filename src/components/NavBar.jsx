@@ -4,7 +4,7 @@ import Logo from "../images/logo.svg";
 import ProfilePhoto from "../images/image-avatar.png";
 
 const renderPages = (pages) => (
-  <ul>
+  <ul className="pages">
     {pages.map((p) => (
       <li>{p}</li>
     ))}
@@ -23,9 +23,13 @@ const NavBar = ({}) => {
   return (
     <div className="navbar">
       <div className="menu-left">
+        <button class="hamburger-icon">
+        <i class="fa-solid fa-bars"></i>
+        </button>
         <img src={Logo} alt="logo" className="logo-img" />
         {renderPages(pages)}
       </div>
+
 
       <div className="menu-right">
         <div className="cart">
