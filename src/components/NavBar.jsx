@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Logo from "../images/logo.svg";
 import ProfilePhoto from "../images/image-avatar.png";
@@ -12,6 +12,7 @@ const renderPages = (pages) => (
 );
 
 const NavBar = ({}) => {
+  const [hamburgerOpen, setHamburgerOpen] = useState(false);
   const pages = ["Collections", "Men", "Women", "About", "Contact"];
 
   const cartIcon = (
@@ -23,13 +24,17 @@ const NavBar = ({}) => {
   return (
     <div className="navbar">
       <div className="menu-left">
-        <button class="hamburger-icon">
-        <i class="fa-solid fa-bars"></i>
+        <button
+          class="hamburger-icon"
+          onClick={() => setHamburgerOpen(!hamburgerOpen)}
+        >
+          <i class="fa-solid fa-bars"></i>
         </button>
         <img src={Logo} alt="logo" className="logo-img" />
-        {renderPages(pages)}
+        <div className={`nav-links ${hamburgerOpen ? "open" : ""}`}>
+          {renderPages(pages)}
+        </div>
       </div>
-
 
       <div className="menu-right">
         <div className="cart">

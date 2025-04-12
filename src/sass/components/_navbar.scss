@@ -1,54 +1,106 @@
 @use "../abstracts/variables" as *;
 
-// All screensizes
-
 .navbar {
   height: 83px;
   overflow: hidden;
   border-bottom: 1px solid $light-grey;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 
-  .logo-img {
-    height: 26px;
-  }
+  background-color: $white;
+  z-index: 1000;
+  position: relative;
 
   .menu-left {
     display: flex;
     align-items: center;
-    ul {
-      display: flex;
-      list-style: none;
-      padding: 0;
-      margin: 0;
 
-      li {
-        position: relative;
-        font-size: 15px;
-        color: $dark-greyish-blue;
-        line-height: 26px;
-        margin-right: 2rem;
+    // Desktop
+    @media (min-width: 1120px) {
+      .hamburger-icon {
+        display: none;
+      }
+    }
 
-        &:first-child {
-          margin-left: 4rem;
+    // Tablet + Mobile
+    @media (max-width: 1119px) {
+      .hamburger-icon {
+        all: unset; // remove default button styles
+        padding-right: 1rem;
+        padding-top: 0.3rem;
+      }
+    }
+
+    .logo-img {
+      height: 20px;
+    }
+
+    .nav-links {
+      ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          position: relative;
+          font-size: 15px;
+          color: $dark-greyish-blue;
+          line-height: 26px;
+          margin-right: 2rem;
+
+          @media (min-width: 1120px) {
+            &:first-child {
+              margin-left: 4rem;
+            }
+          }
+
+          // Hover Effect Using Pseudo-Element
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: -28px; // border rests at bottom of nav bar
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: $orange;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+          }
+
+          &:hover::after {
+            opacity: 1;
+          }
+        }
+      }
+
+      // Tablet + Mobile
+      @media (max-width: 1119px) {
+        position: fixed;
+        top: 0;
+        left: -110%;
+        height: 100vh;
+        width: 250px;
+        background-color: $white;
+        padding: 2rem 1.5rem;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        transition: left 0.3s ease-in-out;
+        z-index: 999;
+
+        ul {
+          flex-direction: column;
+
+          li {
+            margin: 1rem 0;
+            font-size: 18px;
+            color: $very-dark-blue;
+            font-weight: 700;
+          }
         }
 
-        // Hover Effect Using Pseudo-Element
-        &::after {
-          content: "";
-          position: absolute;
-          bottom: -28px; // border rests at bottom of nav bar
+        &.open {
           left: 0;
-          width: 100%;
-          height: 4px;
-          background: $orange;
-          opacity: 0;
-          transition: opacity 0.2s ease-in-out;
-        }
-
-        &:hover::after {
-          opacity: 1;
         }
       }
     }
@@ -57,14 +109,11 @@
   .menu-right {
     display: flex;
     align-items: center;
-    margin-left: auto;
+    gap: 1.5rem;
 
     .cart {
       position: relative;
-
-      .cart-icon {
-        height: 20px;
-      }
+      cursor: pointer;
 
       .cart-quantity {
         height: 13px;
@@ -93,39 +142,12 @@
 
     .profile-photo {
       height: 50px;
-      margin-left: 3rem;
       border-radius: 100%;
       border: 2px solid transparent;
       transition: border 0.2s ease-out;
 
       &:hover {
         border: 2px solid $orange;
-      }
-    }
-  }
-}
-
-// Desktop
-@media only screen and (min-width: 1120px) {
-  .navbar {
-    .hamburger-icon {
-      display: none;
-    }
-  }
-}
-
-// Tablet + Mobile
-@media only screen and (max-width: 1119px) {
-  .navbar {
-    .hamburger-icon {
-      all: unset; // remove default button styles
-      padding-right: 15px;
-      padding-top: 3px;
-    }
-
-     .menu-left {
-      .pages {
-        display: none;
       }
     }
   }
