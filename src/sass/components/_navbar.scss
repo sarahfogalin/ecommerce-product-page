@@ -1,4 +1,5 @@
 @use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 .navbar {
   height: 83px;
@@ -7,33 +8,52 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   background-color: $white;
-  z-index: 1000;
-  position: relative;
+  z-index: 80;
 
   .menu-left {
     display: flex;
     align-items: center;
 
-    // Desktop
-    @media (min-width: 1120px) {
-      .hamburger-icon {
-        display: none;
-      }
-    }
-
-    // Tablet + Mobile
-    @media (max-width: 1119px) {
-      .hamburger-icon {
-        all: unset; // remove default button styles
-        padding-right: 1rem;
-        padding-top: 0.3rem;
-      }
-    }
-
     .logo-img {
       height: 20px;
+    }
+
+    .hamburger-icon {
+      @include buttonReset;
+      padding-right: 1rem;
+      padding-top: 0.3rem;
+
+      .fa-bars {
+        color: $medium-greyish-blue;
+        font-size: 17px;
+      }
+    }
+
+    .close-menu-icon {
+      @include buttonReset;
+
+      opacity: 0;
+      visibility: hidden;
+      transform: rotate(0deg);
+      transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1.2),
+        opacity 0.2s ease, visibility 0.2s ease;
+
+      &.showX {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        margin-bottom: 56px;
+
+        .fa-xmark {
+          color: $dark-greyish-blue;
+          font-size: 18px;
+        }
+      }
+
+      &.clicked {
+        transform: rotate(-15deg);
+      }
     }
 
     .nav-links {
@@ -50,17 +70,10 @@
           line-height: 26px;
           margin-right: 2rem;
 
-          @media (min-width: 1120px) {
-            &:first-child {
-              margin-left: 4rem;
-            }
-          }
-
-          // Hover Effect Using Pseudo-Element
           &::after {
             content: "";
             position: absolute;
-            bottom: -28px; // border rests at bottom of nav bar
+            bottom: -28px;
             left: 0;
             width: 100%;
             height: 4px;
@@ -72,19 +85,25 @@
           &:hover::after {
             opacity: 1;
           }
+
+          @media (min-width: 1120px) {
+            &:first-child {
+              margin-left: 4rem;
+            }
+          }
         }
       }
 
-      // Tablet + Mobile
       @media (max-width: 1119px) {
         position: fixed;
         top: 0;
         left: -110%;
+        width: 300px;
         height: 100vh;
-        width: 250px;
         background-color: $white;
-        padding: 2rem 1.5rem;
+        padding: 48px 0 0 80px;
         box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
         transition: left 0.3s ease-in-out;
         z-index: 999;
 
@@ -94,14 +113,21 @@
           li {
             margin: 1rem 0;
             font-size: 18px;
-            color: $very-dark-blue;
             font-weight: 700;
+            color: $very-dark-blue;
           }
         }
 
         &.open {
           left: 0;
         }
+      }
+    }
+
+    @media (min-width: 1120px) {
+      .hamburger-icon,
+      .close-menu-icon {
+        display: none;
       }
     }
   }
@@ -116,6 +142,9 @@
       cursor: pointer;
 
       .cart-quantity {
+        position: absolute;
+        top: -5px;
+        right: -8px;
         height: 13px;
         width: 19px;
         background-color: $orange;
@@ -125,9 +154,6 @@
         display: flex;
         justify-content: center;
         border-radius: 45%;
-        position: absolute;
-        top: -5px;
-        right: -8px;
       }
 
       svg {
@@ -150,5 +176,23 @@
         border: 2px solid $orange;
       }
     }
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba($black, 0.75);
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: all;
   }
 }

@@ -13,6 +13,7 @@ const renderPages = (pages) => (
 
 const NavBar = ({}) => {
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
+  const [xClicked, setXClicked] = useState(false);
   const pages = ["Collections", "Men", "Women", "About", "Contact"];
 
   const cartIcon = (
@@ -22,28 +23,54 @@ const NavBar = ({}) => {
   );
 
   return (
-    <div className="navbar">
-      <div className="menu-left">
-        <button
-          class="hamburger-icon"
-          onClick={() => setHamburgerOpen(!hamburgerOpen)}
-        >
-          <i class="fa-solid fa-bars"></i>
-        </button>
-        <img src={Logo} alt="logo" className="logo-img" />
-        <div className={`nav-links ${hamburgerOpen ? "open" : ""}`}>
-          {renderPages(pages)}
+    <>
+      <div className="navbar">
+        <div className="menu-left">
+          <button
+            class="hamburger-icon"
+            onClick={() => setHamburgerOpen(!hamburgerOpen)}
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <img src={Logo} alt="logo" className="logo-img" />
+          <div className={`nav-links ${hamburgerOpen ? "open" : ""}`}>
+            <button
+              className={`close-menu-icon ${hamburgerOpen ? "showX" : ""} ${
+                xClicked ? "clicked" : ""
+              }`}
+              onClick={() => {
+                setXClicked(true);
+                setTimeout(() => {
+                  setXClicked(false); // triggers the spring back
+                  setHamburgerOpen(false); // closes the menu
+                }, 200); // matches the transition duration
+              }}
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            {renderPages(pages)}
+          </div>
+        </div>
+
+        <div className="menu-right">
+          <div className="cart">
+            {cartIcon}
+            <div className="cart-quantity">3</div>
+          </div>
+          <img
+            src={ProfilePhoto}
+            alt="profile-photo"
+            className="profile-photo"
+          />
         </div>
       </div>
 
-      <div className="menu-right">
-        <div className="cart">
-          {cartIcon}
-          <div className="cart-quantity">3</div>
-        </div>
-        <img src={ProfilePhoto} alt="profile-photo" className="profile-photo" />
-      </div>
-    </div>
+      {/* Overlay */}
+      <div
+        className={`overlay ${hamburgerOpen ? "visible" : ""}`}
+        onClick={() => setHamburgerOpen(false)}
+      />
+    </>
   );
 };
 

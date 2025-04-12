@@ -22,27 +22,61 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
-  z-index: 1000;
-  position: relative;
+  z-index: 80;
 }
 .navbar .menu-left {
   display: flex;
   align-items: center;
 }
-@media (min-width: 1120px) {
-  .navbar .menu-left .hamburger-icon {
-    display: none;
-  }
-}
-@media (max-width: 1119px) {
-  .navbar .menu-left .hamburger-icon {
-    all: unset;
-    padding-right: 1rem;
-    padding-top: 0.3rem;
-  }
-}
 .navbar .menu-left .logo-img {
   height: 20px;
+}
+.navbar .menu-left .hamburger-icon {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  padding-right: 1rem;
+  padding-top: 0.3rem;
+}
+.navbar .menu-left .hamburger-icon .fa-bars {
+  color: #979797;
+  font-size: 17px;
+}
+.navbar .menu-left .close-menu-icon {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: rotate(0deg);
+  transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1.2), opacity 0.2s ease, visibility 0.2s ease;
+}
+.navbar .menu-left .close-menu-icon.showX {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  margin-bottom: 56px;
+}
+.navbar .menu-left .close-menu-icon.showX .fa-xmark {
+  color: #68707d;
+  font-size: 18px;
+}
+.navbar .menu-left .close-menu-icon.clicked {
+  transform: rotate(-15deg);
 }
 .navbar .menu-left .nav-links ul {
   display: flex;
@@ -56,11 +90,6 @@ body {
   color: #68707d;
   line-height: 26px;
   margin-right: 2rem;
-}
-@media (min-width: 1120px) {
-  .navbar .menu-left .nav-links ul li:first-child {
-    margin-left: 4rem;
-  }
 }
 .navbar .menu-left .nav-links ul li::after {
   content: "";
@@ -76,16 +105,22 @@ body {
 .navbar .menu-left .nav-links ul li:hover::after {
   opacity: 1;
 }
+@media (min-width: 1120px) {
+  .navbar .menu-left .nav-links ul li:first-child {
+    margin-left: 4rem;
+  }
+}
 @media (max-width: 1119px) {
   .navbar .menu-left .nav-links {
     position: fixed;
     top: 0;
     left: -110%;
+    width: 300px;
     height: 100vh;
-    width: 250px;
     background-color: #ffffff;
-    padding: 2rem 1.5rem;
+    padding: 48px 0 0 80px;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
     transition: left 0.3s ease-in-out;
     z-index: 999;
   }
@@ -95,11 +130,17 @@ body {
   .navbar .menu-left .nav-links ul li {
     margin: 1rem 0;
     font-size: 18px;
-    color: #1d2025;
     font-weight: 700;
+    color: #1d2025;
   }
   .navbar .menu-left .nav-links.open {
     left: 0;
+  }
+}
+@media (min-width: 1120px) {
+  .navbar .menu-left .hamburger-icon,
+  .navbar .menu-left .close-menu-icon {
+    display: none;
   }
 }
 .navbar .menu-right {
@@ -112,6 +153,9 @@ body {
   cursor: pointer;
 }
 .navbar .menu-right .cart .cart-quantity {
+  position: absolute;
+  top: -5px;
+  right: -8px;
   height: 13px;
   width: 19px;
   background-color: #ff7d1a;
@@ -121,9 +165,6 @@ body {
   display: flex;
   justify-content: center;
   border-radius: 45%;
-  position: absolute;
-  top: -5px;
-  right: -8px;
 }
 .navbar .menu-right .cart svg {
   fill: #68707d;
@@ -140,6 +181,23 @@ body {
 }
 .navbar .menu-right .profile-photo:hover {
   border: 2px solid #ff7d1a;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.overlay.visible {
+  opacity: 1;
+  pointer-events: all;
 }
 
 .container {

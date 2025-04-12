@@ -119,3 +119,4 @@ This is where you can give a hat tip to anyone who helped you out on this projec
 https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 https://nikitahl.github.io/svg-2-code/
 https://codesandbox.io/p/sandbox/svg-hover-change-color-t2l3b?file=%2Fsrc%2Fstyles.css%3A21%2C2
+https://fontawesome.com/
