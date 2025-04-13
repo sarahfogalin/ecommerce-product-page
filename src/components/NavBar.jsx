@@ -41,8 +41,8 @@ const NavBar = ({}) => {
               onClick={() => {
                 setXClicked(true);
                 setTimeout(() => {
-                  setXClicked(false); // triggers the spring back
-                  setHamburgerOpen(false); // closes the menu
+                  setXClicked(false); // to trigger transition
+                  setHamburgerOpen(false);
                 }, 200); // matches the transition duration
               }}
             >
