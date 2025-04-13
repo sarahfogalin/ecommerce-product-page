@@ -102,7 +102,9 @@ body {
   transition: color 0.2s ease-out;
   transition: transform 0.2s ease-out;
   /* Desktop: underline on hover */
-  /* Active link feedback */
+}
+.navbar .menu-left .nav-links ul li:hover {
+  color: #1d2025;
 }
 @media (min-width: 1120px) {
   .navbar .menu-left .nav-links ul li {
@@ -125,10 +127,6 @@ body {
   .navbar .menu-left .nav-links ul li:first-child {
     margin-left: 4rem;
   }
-}
-.navbar .menu-left .nav-links ul li:active {
-  color: #ff7d1a;
-  transform: scale(0.99);
 }
 @media (max-width: 1119px) {
   .navbar .menu-left .nav-links {
@@ -153,6 +151,11 @@ body {
     font-size: 18px;
     font-weight: 700;
     color: #1d2025;
+    /* Active link feedback */
+  }
+  .navbar .menu-left .nav-links ul li:active {
+    color: #ff7d1a;
+    transform: scale(0.99);
   }
   .navbar .menu-left .nav-links.open {
     left: 0;

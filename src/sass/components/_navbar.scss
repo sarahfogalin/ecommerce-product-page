@@ -81,6 +81,10 @@
           transition: color 0.2s ease-out;
           transition: transform 0.2s ease-out;
 
+          &:hover {
+            color: $very-dark-blue;
+          }
+
           /* Desktop: underline on hover */
           @media (min-width: 1120px) {
             &::after {
@@ -103,12 +107,6 @@
             &:first-child {
               margin-left: 4rem;
             }
-          }
-
-          /* Active link feedback */
-          &:active {
-            color: $orange;
-            transform: scale(0.99);
           }
         }
       }
@@ -136,6 +134,12 @@
             font-size: 18px;
             font-weight: 700;
             color: $very-dark-blue;
+
+            /* Active link feedback */
+            &:active {
+              color: $orange;
+              transform: scale(0.99);
+            }
           }
         }
 
