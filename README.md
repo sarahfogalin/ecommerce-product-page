@@ -1,13 +1,13 @@
-🚧 Sneakers Ecom (Work in Progress)
+# 🚧 Sneakers Ecom (Work in Progress)
 ⚠️ This project is currently a work in progress. I'm actively building it and updating as I go.
 
-🧠 Overview
+## 🧠 Overview
 This is a solution to the [E-commerce product page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6).
 
-🔨 Current Stack
+## 🔨 Current Stack
 [ React / HTML + SCSS / Vite ]
 
-✅ Completed So Far
+## ✅ Completed So Far
 
 Project setup & folder structure
 
@@ -15,11 +15,11 @@ General Styleguide
 
 Responsive Header & Navigation Menu
 
-🚧 In Progress
+## 🚧 In Progress
 
 Product page
 
-🗺️ Roadmap / Next Steps
+## 🗺️ Roadmap / Next Steps
 
 Product page with selectable thumbnails
 
@@ -29,10 +29,11 @@ Cart + Cart functionality
 
 Accessibility improvements
 
-🙋‍♀️ About Me
+## 🙋‍♀️ About Me
 
 Hi! I’m Sarah, a front-end developer building cool things and learning in public.
 Feel free to check out my other repos or reach out:
 
 [linkedin.com/in/sarahfogalin](https://www.linkedin.com/in/sarahfogalin/)
-[Email me](mailto:sarahfogalin@gmail.com)
+
+[email me](mailto:sarahfogalin@gmail.com)
