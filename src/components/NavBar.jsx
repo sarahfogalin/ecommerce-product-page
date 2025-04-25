@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 
-import Logo from "../images/logo.svg";
-import ProfilePhoto from "../images/image-avatar.png";
-
 const renderPages = (pages) => (
   <ul className="pages">
     {pages.map((p) => (
@@ -32,7 +29,7 @@ const NavBar = ({}) => {
           >
             <i class="fa-solid fa-bars"></i>
           </button>
-          <img src={Logo} alt="logo" className="logo-img" />
+          <img src="/images/logo.svg" alt="logo" className="logo-img" />
           <div className={`nav-links ${hamburgerOpen ? "open" : ""}`}>
             <button
               className={`close-menu-icon ${hamburgerOpen ? "showX" : ""} ${
@@ -58,7 +55,7 @@ const NavBar = ({}) => {
             <div className="cart-quantity">3</div>
           </div>
           <img
-            src={ProfilePhoto}
+            src="/images/image-avatar.png"
             alt="profile-photo"
             className="profile-photo"
           />

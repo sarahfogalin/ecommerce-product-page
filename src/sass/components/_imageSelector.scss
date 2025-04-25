@@ -1,0 +1,21 @@
+@use "../abstracts/variables" as *;
+
+.image-selector-container {
+  width: 448px;
+
+  .main-img {
+    width: 100%;
+    border-radius: 15px;
+  }
+
+  .thumbnails {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .thumbnail-img {
+      width: 88px;
+      border-radius: 10px;
+    }
+  }
+}

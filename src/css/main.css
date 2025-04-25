@@ -24,6 +24,11 @@ body {
   background-color: #ffffff;
   z-index: 80;
 }
+@media (max-width: 500px) {
+  .navbar {
+    padding: 0 1.5rem;
+  }
+}
 .navbar .menu-left {
   display: flex;
   align-items: center;
@@ -64,6 +69,7 @@ body {
   font: inherit;
   color: inherit;
   cursor: pointer;
+  margin-bottom: 56px;
   opacity: 0;
   visibility: hidden;
   transform: rotate(0deg);
@@ -75,7 +81,6 @@ body {
   display: block;
   opacity: 1;
   visibility: visible;
-  margin-bottom: 56px;
 }
 .navbar .menu-left .close-menu-icon.showX .fa-xmark {
   color: #68707d;
@@ -232,8 +237,29 @@ body {
   pointer-events: all;
 }
 
+.image-selector-container {
+  width: 448px;
+}
+.image-selector-container .main-img {
+  width: 100%;
+  border-radius: 15px;
+}
+.image-selector-container .thumbnails {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.image-selector-container .thumbnails .thumbnail-img {
+  width: 88px;
+  border-radius: 10px;
+}
+
 .container {
   padding: 1.7rem 10.3rem;
+}
+.container .main-page-container {
+  margin-top: 96px;
+  margin-left: 44.5px;
 }
 
 @media only screen and (max-width: 1119px) {
@@ -243,7 +269,7 @@ body {
 }
 @media only screen and (max-width: 500px) {
   .container {
-    padding: 0.5rem 1.5rem;
+    padding: 0;
   }
 }
 

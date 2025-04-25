@@ -12,6 +12,11 @@
   background-color: $white;
   z-index: 80;
 
+  @media (max-width: 500px) {
+    // width: 100%;
+    padding: 0 1.5rem;
+  }
+
   //  LEFT MENU SECTION: logo, hamburger, nav links
 
   .menu-left {
@@ -38,6 +43,7 @@
     /* Close (X) icon for mobile nav menu */
     .close-menu-icon {
       @include buttonReset;
+      margin-bottom: 56px;
       opacity: 0;
       visibility: hidden;
       transform: rotate(0deg);
@@ -49,7 +55,6 @@
         display: block;
         opacity: 1;
         visibility: visible;
-        margin-bottom: 56px;
 
         .fa-xmark {
           color: $dark-greyish-blue;
