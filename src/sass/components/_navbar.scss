@@ -87,6 +87,7 @@
           transition: transform 0.2s ease-out;
 
           &:hover {
+            cursor: pointer;
             color: $very-dark-blue;
           }
 
@@ -215,6 +216,7 @@
       transition: border 0.2s ease-out;
 
       &:hover {
+        cursor: pointer;
         border: 2px solid $orange;
       }
     }

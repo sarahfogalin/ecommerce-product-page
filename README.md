@@ -1,10 +1,13 @@
 # 🚧 Sneakers Ecom (Work in Progress)
+
 ⚠️ This project is currently a work in progress. I'm actively building it and updating as I go.
 
 ## 🧠 Overview
+
 This is a solution to the [E-commerce product page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6).
 
 ## 🔨 Current Stack
+
 [ React / HTML + SCSS / Vite ]
 
 ## ✅ Completed So Far
@@ -17,7 +20,9 @@ Responsive Header & Navigation Menu
 
 ## 🚧 In Progress
 
-Product page
+Product page:
+
+Image selector + right text area with Add to Cart buttons
 
 ## 🗺️ Roadmap / Next Steps
 

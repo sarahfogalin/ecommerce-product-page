@@ -1,10 +1,12 @@
 @use "../abstracts/variables" as *;
 
+/* Container for the main image and thumbnails */
 .image-selector-container {
   width: 448px;
 
   .main-img {
     width: 100%;
+    margin-bottom: 32px;
     border-radius: 15px;
   }
 
@@ -13,9 +15,63 @@
     display: flex;
     justify-content: space-between;
 
-    .thumbnail-img {
+    /* Individual thumbnail container */
+    .image-wrapper {
       width: 88px;
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
       border-radius: 10px;
+      box-sizing: border-box;
+      border: 2px solid transparent; // Default border (transparent to prevent layout shift)
+      transition: border-color 0.3s ease; // Smooth color change on active
+
+      /* The thumbnail image inside the wrapper */
+      .thumbnail-img {
+        display: block;
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease; // Smooth zoom effect on hover
+      }
+
+      /* Overlay layer for white fade effect */
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $white;
+        opacity: 0; // Start fully transparent
+        transform: scale(1);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        pointer-events: none; // Allow hover events to pass through
+        border-radius: inherit; // Match thumbnail rounded corners
+      }
+
+      /* Hover state: zoom image and fade in overlay */
+      &:hover {
+        cursor: pointer;
+
+        .overlay {
+          opacity: 0.5;
+          transform: scale(1.02); // Slight scale up for "breathing" effect
+        }
+
+        .thumbnail-img {
+          transform: scale(1.05); // Image zooms slightly on hover
+        }
+      }
+
+      /* Active (selected) thumbnail */
+      &.active {
+        border-color: $orange;
+
+        .overlay {
+          opacity: 0.5;
+          transform: scale(1.02);
+        }
+      }
     }
   }
 }

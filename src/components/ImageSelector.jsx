@@ -1,9 +1,22 @@
 import React, { useState } from "react";
 
-const renderImageThumbnails = (images) => (
+/*
+  Render the list of thumbnail images.
+  Highlights the currently selected thumbnail with "active" class.
+  Calls handleImageSelect when a thumbnail is clicked.
+*/
+const renderImageThumbnails = (images, handleImageSelect, selectedIndex) => (
   <div className="thumbnails">
-    {images.map((image) => (
-      <img src={image.thumbnail} alt={image.alt} className="thumbnail-img" />
+    {images.map((image, idx) => (
+      <div className={`image-wrapper ${idx === selectedIndex ? "active" : ""}`}>
+        <img
+          src={image.thumbnail}
+          alt={image.alt}
+          className={`thumbnail-img`}
+          onClick={() => handleImageSelect(idx)}
+        />
+        <div className="overlay"></div>
+      </div>
     ))}
   </div>
 );
@@ -33,14 +46,22 @@ const ImageSelector = ({}) => {
     },
   ];
 
+  // Update the selected image when a thumbnail is clicked
+  const handleImageSelect = (index) => {
+    setCurrentImageIndex(index);
+  };
+
   return (
     <div className="image-selector-container">
+      {/* Main large image */}
       <img
         src={images[currentImageIndex].main}
         alt={images[currentImageIndex].alt}
         className="main-img"
       />
-      {renderImageThumbnails(images)}
+
+      {/* Thumbnail list */}
+      {renderImageThumbnails(images, handleImageSelect, currentImageIndex)}
     </div>
   );
 };

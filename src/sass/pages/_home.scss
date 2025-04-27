@@ -1,4 +1,4 @@
-// DESKTOP
+/* Desktop */
 .container {
   padding: 1.7rem 10.3rem;
 
@@ -8,14 +8,14 @@
   }
 }
 
-// TABLET
+/* Tablet */
 @media only screen and (max-width: 1119px) {
   .container {
     padding: 0.85rem 5.15rem;
   }
 }
 
-// MOBILE
+/* Mobile */
 @media only screen and (max-width: 500px) {
   .container {
     padding: 0;
