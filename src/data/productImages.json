@@ -1,0 +1,22 @@
+[
+  {
+    "main": "/images/image-product-1.jpg",
+    "thumbnail": "/images/image-product-1-thumbnail.jpg",
+    "alt": "product-one"
+  },
+  {
+    "main": "/images/image-product-2.jpg",
+    "thumbnail": "/images/image-product-2-thumbnail.jpg",
+    "alt": "product-two"
+  },
+  {
+    "main": "/images/image-product-3.jpg",
+    "thumbnail": "/images/image-product-3-thumbnail.jpg",
+    "alt": "product-three"
+  },
+  {
+    "main": "/images/image-product-4.jpg",
+    "thumbnail": "/images/image-product-4-thumbnail.jpg",
+    "alt": "product-four"
+  }
+]

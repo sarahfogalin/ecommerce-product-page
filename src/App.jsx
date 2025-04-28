@@ -1,9 +1,11 @@
-import { useState } from "react";
 import "./css/main.css";
 
 import NavBar from "./components/layout/NavBar";
 import ImageSelector from "./components/product/ImageSelector";
 import ProductCard from "./components/product/ProductCard";
+
+/* import image data for reusable imageSelector component */
+import images from './data/productImages.json';
 
 function App() {
   return (
@@ -11,7 +13,7 @@ function App() {
       <NavBar />
       <div className="main-page-container">
         <div className="product-container">
-          <ImageSelector />
+          <ImageSelector images={images} />
           <ProductCard />
         </div>
       </div>
