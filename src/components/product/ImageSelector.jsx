@@ -8,7 +8,10 @@ import React, { useState } from "react";
 const renderImageThumbnails = (images, handleImageSelect, selectedIndex) => (
   <div className="thumbnails">
     {images.map((image, idx) => (
-      <div className={`image-wrapper ${idx === selectedIndex ? "active" : ""}`}>
+      <div
+        className={`image-wrapper ${idx === selectedIndex ? "active" : ""}`}
+        key={image.thumbnail}
+      >
         <img
           src={image.thumbnail}
           alt={image.alt}

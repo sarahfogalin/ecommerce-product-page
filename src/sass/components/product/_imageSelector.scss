@@ -1,8 +1,9 @@
-@use "../abstracts/variables" as *;
+@use "../../abstracts/variables" as *;
 
 /* Container for the main image and thumbnails */
 .image-selector-container {
   width: 448px;
+  margin-right: 128px;
 
   .main-img {
     width: 100%;

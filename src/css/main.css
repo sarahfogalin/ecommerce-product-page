@@ -242,6 +242,7 @@ body {
 /* Container for the main image and thumbnails */
 .image-selector-container {
   width: 448px;
+  margin-right: 128px;
 }
 .image-selector-container .main-img {
   width: 100%;
@@ -305,6 +306,62 @@ body {
   transform: scale(1.02);
 }
 
+.card {
+  width: 445px;
+  /* Brand Name */
+  /* Product Title */
+  /* Product Description */
+  /* Sale Price + Discount */
+}
+.card .company-title {
+  color: #68707d;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+.card h1 {
+  color: #1d2025;
+  font-size: 44px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+.card .product-description {
+  color: #68707d;
+  font-size: 16px;
+  line-height: 26px;
+  margin-bottom: 32px;
+}
+.card .sale-price-container {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+.card .sale-price-container .sale-price {
+  color: #1d2025;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 32px;
+  margin-right: 16px;
+}
+.card .sale-price-container .discount {
+  display: inline-block;
+  padding: 0 9.5px;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26px;
+  background-color: #1d2025;
+}
+.card .original-price {
+  color: #68707d;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26px;
+  text-decoration: line-through;
+}
+
 /* Desktop */
 .container {
   padding: 1.7rem 10.3rem;
@@ -312,6 +369,9 @@ body {
 .container .main-page-container {
   margin-top: 96px;
   margin-left: 44.5px;
+}
+.container .main-page-container .product-container {
+  display: flex;
 }
 
 /* Tablet */

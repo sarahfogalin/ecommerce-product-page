@@ -1,7 +1,8 @@
 @use "base/base";
 @use "base/typography";
 
-@use "components/navbar";
-@use "components/imageSelector";
+@use "components/layout/navbar";
+@use "components/product/imageSelector";
+@use "components/product/productCard";
 
 @use "pages/home";

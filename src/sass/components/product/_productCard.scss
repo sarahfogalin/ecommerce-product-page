@@ -1,0 +1,64 @@
+@use "../../abstracts/variables" as *;
+
+.card {
+  width: 445px;
+
+  /* Brand Name */
+  .company-title {
+    color: $dark-greyish-blue;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+
+  /* Product Title */
+  h1 {
+    color: $very-dark-blue;
+    font-size: 44px;
+    font-weight: 700;
+    margin-bottom: 32px;
+  }
+
+  /* Product Description */
+  .product-description {
+    color: $dark-greyish-blue;
+    font-size: 16px;
+    line-height: 26px;
+    margin-bottom: 32px;
+  }
+
+  /* Sale Price + Discount */
+  .sale-price-container {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+
+    .sale-price {
+      color: $very-dark-blue;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 32px;
+      margin-right: 16px;
+    }
+
+    .discount {
+      display: inline-block;
+      padding: 0 9.5px;
+      border-radius: 6px;
+      color: $white;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 26px;
+      background-color: $very-dark-blue;
+    }
+  }
+
+  .original-price {
+    color: $dark-greyish-blue;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 26px;
+    text-decoration: line-through;
+  }
+}
