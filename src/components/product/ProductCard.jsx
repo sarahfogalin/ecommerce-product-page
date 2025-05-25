@@ -1,4 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+
+const QuantitySelector = ({ onDecrement, onIncrement, quantity }) => (
+  <div className="quantity-selector-container">
+    <button
+      type="button"
+      onClick={onDecrement}
+      aria-label="Decrease quantity"
+      disabled={quantity === 1}
+    >
+      <img
+        src="/images/icon-minus.svg"
+        alt="decrement"
+        className={`decrement-icon ${quantity === 1 ? "disabled" : ""}`}
+      />
+    </button>
+    <span className="quantity">{quantity}</span>
+    <button type="button" onClick={onIncrement} aria-label="Increase quantity">
+      <img
+        src="/images/icon-plus.svg"
+        alt="increment"
+        className="increment-icon"
+      />
+    </button>
+  </div>
+);
 
 /**
  * ProductCard Component
@@ -7,6 +32,12 @@ import React from "react";
  *
  */
 const ProductCard = ({}) => {
+  const [quantity, setQuantity] = useState(1);
+
+  const handleDecrement = () => setQuantity(quantity - 1);
+
+  const handleIncrement = () => setQuantity(quantity + 1);
+
   return (
     <div className="card">
       <p className="company-title">SNEAKER COMPANY</p>
@@ -21,6 +52,19 @@ const ProductCard = ({}) => {
         <span className="discount">50%</span>
       </div>
       <span className="original-price">$250.00</span>
+
+      {
+        <QuantitySelector
+          onDecrement={handleDecrement}
+          onIncrement={handleIncrement}
+          quantity={quantity}
+        />
+      }
+
+      <div className="add-to-cart-button">
+        <img src="/images/icon-cart.svg" alt="cart" className="cart-icon" />
+        Add to cart
+      </div>
     </div>
   );
 };

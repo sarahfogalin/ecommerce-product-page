@@ -1,4 +1,5 @@
 @use "../../abstracts/variables" as *;
+@use "../../abstracts/mixins" as *;
 
 .card {
   width: 445px;
@@ -60,5 +61,40 @@
     font-weight: 700;
     line-height: 26px;
     text-decoration: line-through;
+  }
+
+  .quantity-selector-container {
+    width: 157px;
+    padding: 15px;
+    background-color: $light-greyish-blue;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      @include buttonReset;
+    }
+
+    .decrement-icon,
+    .increment-icon {
+      width: 12px;
+    }
+
+    .decrement-icon {
+      position: relative;
+      top: -3px;
+
+      &.disabled {
+        opacity: 0.5;
+      }
+    }
+
+    .quantity {
+      color: $very-dark-blue;
+      font-size: 16px;
+      font-weight: 700;
+    }
   }
 }
