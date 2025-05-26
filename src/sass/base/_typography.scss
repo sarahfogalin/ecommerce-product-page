@@ -1,4 +1,8 @@
+@use "../abstracts/variables" as *;
+
 body {
   font-family: "Kumbh Sans", sans-serif;
   font-weight: 400;
+  color: $very-dark-blue;
+  font-size: 16px;
 }

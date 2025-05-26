@@ -12,6 +12,8 @@ html {
 body {
   font-family: "Kumbh Sans", sans-serif;
   font-weight: 400;
+  color: #1d2025;
+  font-size: 16px;
 }
 
 .navbar {
@@ -313,6 +315,18 @@ body {
   /* Product Description */
   /* Sale Price + Discount */
 }
+.card button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
 .card .company-title {
   color: #68707d;
   font-size: 13px;
@@ -321,7 +335,6 @@ body {
   margin-bottom: 24px;
 }
 .card h1 {
-  color: #1d2025;
   font-size: 44px;
   font-weight: 700;
   margin-bottom: 32px;
@@ -338,7 +351,6 @@ body {
   align-items: center;
 }
 .card .sale-price-container .sale-price {
-  color: #1d2025;
   font-size: 28px;
   font-weight: 700;
   line-height: 32px;
@@ -361,43 +373,49 @@ body {
   line-height: 26px;
   text-decoration: line-through;
 }
-.card .quantity-selector-container {
+.card .add-to-cart-container {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+}
+.card .add-to-cart-container .quantity-selector-container {
+  box-sizing: border-box;
   width: 157px;
   padding: 15px;
-  background-color: #f7f8fd;
   border-radius: 10px;
-  box-sizing: border-box;
+  background-color: #f7f8fd;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.card .quantity-selector-container button {
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  outline: none;
-  box-shadow: none;
-  appearance: none;
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
-}
-.card .quantity-selector-container .decrement-icon,
-.card .quantity-selector-container .increment-icon {
+.card .add-to-cart-container .quantity-selector-container .decrement-icon,
+.card .add-to-cart-container .quantity-selector-container .increment-icon {
   width: 12px;
 }
-.card .quantity-selector-container .decrement-icon {
+.card .add-to-cart-container .quantity-selector-container .decrement-icon {
   position: relative;
   top: -3px;
 }
-.card .quantity-selector-container .decrement-icon.disabled {
+.card .add-to-cart-container .quantity-selector-container .decrement-icon.disabled {
   opacity: 0.5;
 }
-.card .quantity-selector-container .quantity {
-  color: #1d2025;
+.card .add-to-cart-container .quantity-selector-container .quantity {
   font-size: 16px;
   font-weight: 700;
+}
+.card .add-to-cart-container .add-to-cart-button {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  width: 272px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #ff7d1a;
+  font-weight: 700;
+  line-height: 26px;
+  filter: drop-shadow(0 20px 50px rgba(255, 125, 26, 0.25));
 }
 
 /* Desktop */

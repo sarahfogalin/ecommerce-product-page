@@ -2,6 +2,10 @@
 @use "../../abstracts/mixins" as *;
 
 .card {
+  button {
+    @include buttonReset;
+  }
+
   width: 445px;
 
   /* Brand Name */
@@ -15,7 +19,6 @@
 
   /* Product Title */
   h1 {
-    color: $very-dark-blue;
     font-size: 44px;
     font-weight: 700;
     margin-bottom: 32px;
@@ -36,7 +39,6 @@
     align-items: center;
 
     .sale-price {
-      color: $very-dark-blue;
       font-size: 28px;
       font-weight: 700;
       line-height: 32px;
@@ -63,38 +65,57 @@
     text-decoration: line-through;
   }
 
-  .quantity-selector-container {
-    width: 157px;
-    padding: 15px;
-    background-color: $light-greyish-blue;
-    border-radius: 10px;
-    box-sizing: border-box;
+  .add-to-cart-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    gap: 16px;
+    margin-top: 32px;
 
-    button {
-      @include buttonReset;
-    }
+    .quantity-selector-container {
+      box-sizing: border-box;
+      width: 157px;
+      padding: 15px;
+      border-radius: 10px;
+      background-color: $light-greyish-blue;
 
-    .decrement-icon,
-    .increment-icon {
-      width: 12px;
-    }
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-    .decrement-icon {
-      position: relative;
-      top: -3px;
+      .decrement-icon,
+      .increment-icon {
+        width: 12px;
+      }
 
-      &.disabled {
-        opacity: 0.5;
+      .decrement-icon {
+        position: relative;
+        top: -3px;
+
+        &.disabled {
+          opacity: 0.5;
+        }
+      }
+
+      .quantity {
+        font-size: 16px;
+        font-weight: 700;
       }
     }
 
-    .quantity {
-      color: $very-dark-blue;
-      font-size: 16px;
+    .add-to-cart-button {
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+
+      width: 272px;
+      padding: 15px;
+      border-radius: 10px;
+
+      background-color: $orange;
       font-weight: 700;
+      line-height: 26px;
+      filter: drop-shadow(0 20px 50px rgba($orange, 0.25));
     }
   }
 }

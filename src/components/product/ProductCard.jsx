@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import CartIcon from "../icons/CartIcon";
+
 const QuantitySelector = ({ onDecrement, onIncrement, quantity }) => (
   <div className="quantity-selector-container">
     <button
@@ -23,6 +25,14 @@ const QuantitySelector = ({ onDecrement, onIncrement, quantity }) => (
       />
     </button>
   </div>
+);
+
+// to do: add functionality
+const AddToCart = () => (
+  <button className="add-to-cart-button">
+    <CartIcon width={17} height={16} />
+    Add to cart
+  </button>
 );
 
 /**
@@ -53,17 +63,16 @@ const ProductCard = ({}) => {
       </div>
       <span className="original-price">$250.00</span>
 
-      {
-        <QuantitySelector
-          onDecrement={handleDecrement}
-          onIncrement={handleIncrement}
-          quantity={quantity}
-        />
-      }
+      <div className="add-to-cart-container">
+        {
+          <QuantitySelector
+            onDecrement={handleDecrement}
+            onIncrement={handleIncrement}
+            quantity={quantity}
+          />
+        }
 
-      <div className="add-to-cart-button">
-        <img src="/images/icon-cart.svg" alt="cart" className="cart-icon" />
-        Add to cart
+        {<AddToCart />}
       </div>
     </div>
   );
