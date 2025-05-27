@@ -8,6 +8,8 @@
 
     .product-container {
       display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
@@ -15,7 +17,11 @@
 /* Tablet */
 @media only screen and (max-width: 1119px) {
   .container {
-    padding: 0.85rem 5.15rem;
+    padding: 0.85rem 5.15rem 4.4rem 5.15rem;
+
+    .product-container {
+      flex-direction: column;
+    }
   }
 }
 

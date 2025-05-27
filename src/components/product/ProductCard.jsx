@@ -17,11 +17,16 @@ const QuantitySelector = ({ onDecrement, onIncrement, quantity }) => (
       />
     </button>
     <span className="quantity">{quantity}</span>
-    <button type="button" onClick={onIncrement} aria-label="Increase quantity">
+    <button
+      type="button"
+      onClick={onIncrement}
+      aria-label="Increase quantity"
+      disabled={quantity >= 3}
+    >
       <img
         src="/images/icon-plus.svg"
         alt="increment"
-        className="increment-icon"
+        className={`increment-icon ${quantity >= 3 ? "disabled" : ""}`}
       />
     </button>
   </div>

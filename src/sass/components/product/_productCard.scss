@@ -2,11 +2,15 @@
 @use "../../abstracts/mixins" as *;
 
 .card {
+  width: 445px;
+  // Tablet
+  @media (max-width: 1119px) {
+    width: 608px;
+  }
+
   button {
     @include buttonReset;
   }
-
-  width: 445px;
 
   /* Brand Name */
   .company-title {
@@ -22,6 +26,11 @@
     font-size: 44px;
     font-weight: 700;
     margin-bottom: 32px;
+
+    // Tablet
+    @media (max-width: 1119px) {
+      margin-bottom: 24px;
+    }
   }
 
   /* Product Description */
@@ -30,6 +39,11 @@
     font-size: 16px;
     line-height: 26px;
     margin-bottom: 32px;
+
+    // Tablet
+    @media (max-width: 1119px) {
+      margin-bottom: 24px;
+    }
   }
 
   /* Sale Price + Discount */
@@ -70,7 +84,17 @@
     gap: 16px;
     margin-top: 32px;
 
+    // Tablet
+    @media (max-width: 1119px) {
+      margin-top: 24px;
+    }
+
     .quantity-selector-container {
+      // Tablet
+      @media (max-width: 1119px) {
+        width: 298px;
+      }
+
       box-sizing: border-box;
       width: 157px;
       padding: 15px;
@@ -84,15 +108,15 @@
       .decrement-icon,
       .increment-icon {
         width: 12px;
+
+        &.disabled {
+          opacity: 0.5;
+        }
       }
 
       .decrement-icon {
         position: relative;
         top: -3px;
-
-        &.disabled {
-          opacity: 0.5;
-        }
       }
 
       .quantity {
@@ -102,6 +126,11 @@
     }
 
     .add-to-cart-button {
+      // Tablet
+      @media (max-width: 1119px) {
+        width: 301px;
+      }
+
       box-sizing: border-box;
       display: flex;
       justify-content: center;
@@ -116,6 +145,10 @@
       font-weight: 700;
       line-height: 26px;
       filter: drop-shadow(0 20px 50px rgba($orange, 0.25));
+
+      &:hover {
+        background-color: $medium-orange;
+      }
     }
   }
 }

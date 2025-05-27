@@ -1,11 +1,11 @@
 import "./css/main.css";
 
 import NavBar from "./components/layout/NavBar";
-import ImageSelector from "./components/product/ImageSelector";
+import Gallery from "./components/product/Gallery";
 import ProductCard from "./components/product/ProductCard";
 
-/* import image data for reusable imageSelector component */
-import images from './data/productImages.json';
+/* import image data for reusable Gallery component */
+import images from "./data/productImages.json";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <NavBar />
       <div className="main-page-container">
         <div className="product-container">
-          <ImageSelector images={images} />
+          <Gallery images={images} />
           <ProductCard />
         </div>
       </div>

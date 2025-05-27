@@ -22,11 +22,7 @@ const Thumbnail = ({ image, isSelected, onSelect, index }) => (
     role="button"
     tabIndex={0}
   >
-    <img
-      src={image.thumbnail}
-      alt={image.alt}
-      className="thumbnail-img"
-    />
+    <img src={image.thumbnail} alt={image.alt} className="thumbnail-img" />
     <div className="overlay"></div>
   </div>
 );
@@ -54,7 +50,7 @@ const ThumbnailList = ({ images, selectedIndex, onSelect }) => (
 );
 
 /*
-  ImageSelector component - main wrapper that manages image selection state.
+  Gallery component - main wrapper that manages image selection state.
   
   Props:
     - images: array of image objects, each with:
@@ -67,16 +63,16 @@ const ThumbnailList = ({ images, selectedIndex, onSelect }) => (
     - Renders a list of thumbnails below.
     - Updates the main image when a thumbnail is clicked or activated with keyboard.
 */
-const ImageSelector = ({ images }) => {
+const Gallery = ({ images }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
+
   // Update the selected image when a thumbnail is clicked
   const handleImageSelect = (index) => {
     setCurrentImageIndex(index);
   };
 
   return (
-    <div className="image-selector-container">
+    <div className="gallery-container">
       {/* Main large image */}
       <img
         src={images[currentImageIndex].main}
@@ -94,4 +90,4 @@ const ImageSelector = ({ images }) => {
   );
 };
 
-export default ImageSelector;
+export default Gallery;
