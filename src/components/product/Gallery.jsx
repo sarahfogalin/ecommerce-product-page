@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useMediaQuery } from 'react-responsive';
+import PreviousIcon from "../icons/PreviousIcon";
+import NextIcon from "../icons/NextIcon";
 
 /*
   Thumbnail component - handles individual thumbnail logic.
@@ -64,6 +67,8 @@ const ThumbnailList = ({ images, selectedIndex, onSelect }) => (
     - Updates the main image when a thumbnail is clicked or activated with keyboard.
 */
 const Gallery = ({ images }) => {
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1119px)' })
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Update the selected image when a thumbnail is clicked
@@ -71,21 +76,42 @@ const Gallery = ({ images }) => {
     setCurrentImageIndex(index);
   };
 
+  const goNext = () => setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  const goPrev = () =>
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+
   return (
     <div className="gallery-container">
       {/* Main large image */}
-      <img
-        src={images[currentImageIndex].main}
-        alt={images[currentImageIndex].alt}
-        className="main-img"
-      />
+      <div className="main-img-container">
+        <div className="image-wrapper">
+          <img
+            src={images[currentImageIndex].main}
+            alt={images[currentImageIndex].alt}
+            className={`main-img ${images[currentImageIndex].alt}`}
+          />
+        </div>
+        {isTabletOrMobile && (
+          <div className="arrow-controls">
+            <button onClick={goPrev} className="prev-arrow">
+              <PreviousIcon width={6} height={12} />
+            </button>
+            <button onClick={goNext} className="next-arrow">
+              <NextIcon width={6} height={12} />
+            </button>
+          </div>
+        )}
+      </div>
 
-      {/* Thumbnail list */}
-      <ThumbnailList
-        images={images}
-        selectedIndex={currentImageIndex}
-        onSelect={handleImageSelect}
-      />
+
+      {/* Conditional controls */}
+      {!isTabletOrMobile && (
+        <ThumbnailList
+          images={images}
+          selectedIndex={currentImageIndex}
+          onSelect={handleImageSelect}
+        />)}
+
     </div>
   );
 };

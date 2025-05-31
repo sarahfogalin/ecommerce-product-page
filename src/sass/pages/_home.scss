@@ -4,7 +4,8 @@
 
   .main-page-container {
     margin-top: 96px;
-    margin-left: 44.5px;
+    display: flex;
+    justify-content: center;
 
     .product-container {
       display: flex;
@@ -19,8 +20,12 @@
   .container {
     padding: 0.85rem 5.15rem 4.4rem 5.15rem;
 
-    .product-container {
-      flex-direction: column;
+    .main-page-container {
+      margin-top: 48px;
+      .product-container {
+        flex-direction: column;
+        width: 608px;
+      }
     }
   }
 }

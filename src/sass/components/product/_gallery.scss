@@ -1,14 +1,96 @@
 @use "../../abstracts/variables" as *;
+@use "../../abstracts/mixins" as *;
 
 /* Container for the main image and thumbnails */
 .gallery-container {
   width: 448px;
   margin-right: 128px;
 
-  .main-img {
+  // Tablet
+  @media (max-width: 1119px) {
     width: 100%;
-    margin-bottom: 32px;
-    border-radius: 15px;
+    margin-right: 0;
+  }
+
+  .main-img-container {
+    position: relative;
+
+    .image-wrapper {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+
+      margin-bottom: 32px;
+      border-radius: 15px;
+
+      // Tablet
+      @media (max-width: 1119px) {
+        aspect-ratio: 2.1 / 1;
+      }
+
+      .main-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+
+        // Tablet
+        @media (max-width: 1119px) {
+          &.product-one {
+            object-position: center 65%;
+          }
+
+          &.product-two {
+            object-position: center 0;
+          }
+
+          &.product-three {
+            object-position: center 0;
+          }
+
+          &.product-four {
+            object-position: center 20%;
+          }
+        }
+      }
+    }
+
+    .arrow-controls {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      pointer-events: none; // ignore pointer events for the div
+      margin: 0 12px;
+
+      button {
+        @include buttonReset;
+
+        width: 40px;
+        height: 40px;
+        background-color: $white;
+        border-radius: 20px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        pointer-events: auto; // enable for the buttons themselves
+      }
+
+      .prev-arrow,
+      .next-arrow {
+        color: $very-dark-blue;
+        transition: color 0.3s ease;
+      }
+
+      .next-arrow:hover {
+        color: $orange;
+      }
+    }
   }
 
   .thumbnails {
@@ -45,7 +127,9 @@
         background-color: $white;
         opacity: 0; // Start fully transparent
         transform: scale(1);
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
         pointer-events: none; // Allow hover events to pass through
         border-radius: inherit; // Match thumbnail rounded corners
       }
