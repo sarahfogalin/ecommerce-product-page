@@ -18,15 +18,19 @@ General Styleguide
 
 Responsive Header & Navigation Menu
 
+Image selector with swipe animations on tablet + mobile
+
+Product Description Card
+
+Quantity Selector + Add To Cart Button
+
 ## 🚧 In Progress
 
 Product page:
 
-Image selector + right text area with Add to Cart buttons
+Lightbox gallery on Desktop
 
 ## 🗺️ Roadmap / Next Steps
-
-Product page with selectable thumbnails
 
 Lightbox gallery
 
