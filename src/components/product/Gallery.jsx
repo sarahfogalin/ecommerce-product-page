@@ -1,20 +1,13 @@
-import React, { useState } from "react";
-import { useMediaQuery } from 'react-responsive';
+import React, { useState, useRef } from "react";
+import { useMediaQuery } from "react-responsive";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import PreviousIcon from "../icons/PreviousIcon";
 import NextIcon from "../icons/NextIcon";
 
 /*
-  Thumbnail component - handles individual thumbnail logic.
-  
-  Props:
-    - image: object with {main, thumbnail, alt} fields.
-    - isSelected: boolean indicating if this thumbnail is the currently active one.
-    - onSelect: callback to update selected image.
-    - index: position of this thumbnail in the images array.
-
-  Features:
-    - Highlights the currently selected thumbnail by adding "active" class.
-    - Clickable and keyboard-accessible (Enter key) with role="button" and tabIndex=0.
+  Thumbnail component - renders each individual thumbnail image.
+  Highlights the selected thumbnail with a border and overlay.
+  Supports both click and keyboard (Enter key) selection.
 */
 const Thumbnail = ({ image, isSelected, onSelect, index }) => (
   <div
@@ -31,12 +24,11 @@ const Thumbnail = ({ image, isSelected, onSelect, index }) => (
 );
 
 /*
-  ThumbnailList component - renders a group of Thumbnail components.
-  
+  ThumbnailList component - renders a row of thumbnails.
   Props:
-    - images: array of image objects.
-    - selectedIndex: currently active thumbnail index.
-    - onSelect: function to update selected image.
+    - images: array of image objects
+    - selectedIndex: currently selected image index
+    - onSelect: function to update selected image index
 */
 const ThumbnailList = ({ images, selectedIndex, onSelect }) => (
   <div className="thumbnails">
@@ -53,65 +45,93 @@ const ThumbnailList = ({ images, selectedIndex, onSelect }) => (
 );
 
 /*
-  Gallery component - main wrapper that manages image selection state.
-  
+  Gallery component - main wrapper that manages selected image and transitions.
   Props:
-    - images: array of image objects, each with:
-      - main: string (URL for full-size image)
-      - thumbnail: string (URL for thumbnail image)
-      - alt: string (alt text for accessibility)
-
+    - images: array of { main, thumbnail, alt } image objects.
   Behavior:
-    - Displays the currently selected large image.
-    - Renders a list of thumbnails below.
-    - Updates the main image when a thumbnail is clicked or activated with keyboard.
+    - Desktop: shows static main image and thumbnails.
+    - Tablet/Mobile: uses arrow navigation with sliding transition animation.
 */
 const Gallery = ({ images }) => {
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1119px)' })
-
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1119px)" });
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [direction, setDirection] = useState("next");
 
-  // Update the selected image when a thumbnail is clicked
+  // Refs for animated image nodes
+  const nodeRefs = useRef(images.map(() => React.createRef()));
+
+  // Navigate to next image (circular)
+  const goNext = () => {
+    setDirection("next");
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  // Navigate to previous image (circular)
+  const goPrev = () => {
+    setDirection("prev");
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  // Select image via thumbnail (sets direction based on index diff)
   const handleImageSelect = (index) => {
+    if (index > currentImageIndex) setDirection("next");
+    else if (index < currentImageIndex) setDirection("prev");
     setCurrentImageIndex(index);
   };
 
-  const goNext = () => setCurrentImageIndex((prev) => (prev + 1) % images.length);
-  const goPrev = () =>
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-
   return (
     <div className="gallery-container">
-      {/* Main large image */}
+      {/* Main image display */}
       <div className="main-img-container">
-        <div className="image-wrapper">
-          <img
-            src={images[currentImageIndex].main}
-            alt={images[currentImageIndex].alt}
-            className={`main-img ${images[currentImageIndex].alt}`}
-          />
-        </div>
-        {isTabletOrMobile && (
-          <div className="arrow-controls">
-            <button onClick={goPrev} className="prev-arrow">
-              <PreviousIcon width={6} height={12} />
-            </button>
-            <button onClick={goNext} className="next-arrow">
-              <NextIcon width={6} height={12} />
-            </button>
+        {isTabletOrMobile ? (
+          // Mobile/tablet version: sliding image animation with arrows
+          <div className="slider-push-wrapper">
+            <TransitionGroup className={`slider-push ${direction}`}>
+              <CSSTransition
+                key={images[currentImageIndex].main}
+                timeout={400}
+                classNames="push"
+                nodeRef={nodeRefs.current[currentImageIndex]}
+              >
+                <img
+                  ref={nodeRefs.current[currentImageIndex]}
+                  src={images[currentImageIndex].main}
+                  alt={images[currentImageIndex].alt}
+                  className={`main-img ${images[currentImageIndex].alt}`}
+                />
+              </CSSTransition>
+            </TransitionGroup>
+
+            {/* Arrows shown only on tablet/mobile */}
+            <div className="arrow-controls">
+              <button onClick={goPrev} className="prev-arrow">
+                <PreviousIcon width={6} height={12} />
+              </button>
+              <button onClick={goNext} className="next-arrow">
+                <NextIcon width={6} height={12} />
+              </button>
+            </div>
+          </div>
+        ) : (
+          // Desktop: static image with thumbnail selection
+          <div className="image-wrapper">
+            <img
+              src={images[currentImageIndex].main}
+              alt={images[currentImageIndex].alt}
+              className={`main-img ${images[currentImageIndex].alt}`}
+            />
           </div>
         )}
       </div>
 
-
-      {/* Conditional controls */}
+      {/* Thumbnails (desktop only) */}
       {!isTabletOrMobile && (
         <ThumbnailList
           images={images}
           selectedIndex={currentImageIndex}
           onSelect={handleImageSelect}
-        />)}
-
+        />
+      )}
     </div>
   );
 };

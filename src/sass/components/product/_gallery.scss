@@ -1,7 +1,13 @@
 @use "../../abstracts/variables" as *;
 @use "../../abstracts/mixins" as *;
 
-/* Container for the main image and thumbnails */
+/*
+  Gallery Layout Styles
+  ----------------------
+  This stylesheet defines the styles for the responsive image gallery component.
+  It includes layout, thumbnail interactions, and mobile-friendly slide animations.
+*/
+
 .gallery-container {
   width: 448px;
   margin-right: 128px;
@@ -15,11 +21,37 @@
   .main-img-container {
     position: relative;
 
+    /*
+      Main Image Styling (desktop & mobile)
+      -------------------------------------
+      The main image is responsive and cropped using object-fit.
+      For specific product images, custom object-position adjustments are made on tablet.
+    */
+    .main-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+
+      @media (max-width: 1119px) {
+        &.product-one {
+          object-position: center 65%;
+        }
+        &.product-two,
+        &.product-three {
+          object-position: center 0;
+        }
+        &.product-four {
+          object-position: center 20%;
+        }
+      }
+    }
+
+    // Static image wrapper for desktop layout
     .image-wrapper {
       width: 100%;
       aspect-ratio: 1 / 1;
       overflow: hidden;
-
       margin-bottom: 32px;
       border-radius: 15px;
 
@@ -27,34 +59,46 @@
       @media (max-width: 1119px) {
         aspect-ratio: 2.1 / 1;
       }
+    }
 
-      .main-img {
+    /*
+      Tablet/Mobile Push-Style Slider Wrapper
+      ----------------------------------------
+      Container and animation structure for slide transitions.
+    */
+    @media (max-width: 1119px) {
+      .slider-push-wrapper {
+        width: 100%;
+        aspect-ratio: 2.1 / 1;
+        border-radius: 15px;
+        overflow: hidden;
+        margin-bottom: 32px;
+        position: relative;
+        background-color: $light-greyish-blue; // fallback background between transitions
+      }
+
+      .slider-push {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .slider-push img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         object-position: center;
-
-        // Tablet
-        @media (max-width: 1119px) {
-          &.product-one {
-            object-position: center 65%;
-          }
-
-          &.product-two {
-            object-position: center 0;
-          }
-
-          &.product-three {
-            object-position: center 0;
-          }
-
-          &.product-four {
-            object-position: center 20%;
-          }
-        }
+        position: absolute;
+        top: 0;
+        left: 0;
       }
     }
 
+    /*
+      Arrow Controls
+      --------------
+      Floating navigation buttons for image switching.
+    */
     .arrow-controls {
       position: absolute;
       top: 50%;
@@ -68,16 +112,13 @@
 
       button {
         @include buttonReset;
-
         width: 40px;
         height: 40px;
         background-color: $white;
         border-radius: 20px;
-
         display: flex;
         justify-content: center;
         align-items: center;
-
         pointer-events: auto; // enable for the buttons themselves
       }
 
@@ -93,12 +134,16 @@
     }
   }
 
+  /*
+    Thumbnails Section
+    ------------------
+    Visible only on desktop. Includes hover and selected effects.
+  */
   .thumbnails {
     width: 100%;
     display: flex;
     justify-content: space-between;
 
-    /* Individual thumbnail container */
     .image-wrapper {
       width: 88px;
       position: relative;
@@ -107,14 +152,13 @@
       border-radius: 10px;
       box-sizing: border-box;
       border: 2px solid transparent; // Default border (transparent to prevent layout shift)
-      transition: border-color 0.3s ease; // Smooth color change on active
+      transition: border-color 0.3s ease;
 
-      /* The thumbnail image inside the wrapper */
       .thumbnail-img {
         display: block;
         width: 100%;
         height: auto;
-        transition: transform 0.3s ease; // Smooth zoom effect on hover
+        transition: transform 0.3s ease;
       }
 
       /* Overlay layer for white fade effect */
@@ -125,13 +169,11 @@
         width: 100%;
         height: 100%;
         background-color: $white;
-        opacity: 0; // Start fully transparent
+        opacity: 0;
         transform: scale(1);
-        transition:
-          opacity 0.3s ease,
-          transform 0.3s ease;
-        pointer-events: none; // Allow hover events to pass through
-        border-radius: inherit; // Match thumbnail rounded corners
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        pointer-events: none;
+        border-radius: inherit;
       }
 
       /* Hover state: zoom image and fade in overlay */
@@ -140,11 +182,11 @@
 
         .overlay {
           opacity: 0.5;
-          transform: scale(1.02); // Slight scale up for "breathing" effect
+          transform: scale(1.02);
         }
 
         .thumbnail-img {
-          transform: scale(1.05); // Image zooms slightly on hover
+          transform: scale(1.05);
         }
       }
 
@@ -159,4 +201,39 @@
       }
     }
   }
+}
+
+/*
+  Push Slide Transitions
+  ----------------------
+  CSS classes used by react-transition-group to animate image enter/exit with push effect.
+*/
+.slider-push.next .push-enter {
+  transform: translateX(100%);
+}
+.slider-push.next .push-enter-active {
+  transform: translateX(0%);
+  transition: transform 0.4s ease;
+}
+.slider-push.next .push-exit {
+  transform: translateX(0%);
+}
+.slider-push.next .push-exit-active {
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+.slider-push.prev .push-enter {
+  transform: translateX(-100%);
+}
+.slider-push.prev .push-enter-active {
+  transform: translateX(0%);
+  transition: transform 0.4s ease;
+}
+.slider-push.prev .push-exit {
+  transform: translateX(0%);
+}
+.slider-push.prev .push-exit-active {
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
 }

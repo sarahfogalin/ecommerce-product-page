@@ -90,11 +90,6 @@
     }
 
     .quantity-selector-container {
-      // Tablet
-      @media (max-width: 1119px) {
-        width: 298px;
-      }
-
       box-sizing: border-box;
       width: 157px;
       padding: 15px;
@@ -123,14 +118,14 @@
         font-size: 16px;
         font-weight: 700;
       }
+
+      // Tablet
+      @media (max-width: 1119px) {
+        width: 298px;
+      }
     }
 
     .add-to-cart-button {
-      // Tablet
-      @media (max-width: 1119px) {
-        width: 301px;
-      }
-
       box-sizing: border-box;
       display: flex;
       justify-content: center;
@@ -148,6 +143,11 @@
 
       &:hover {
         background-color: $medium-orange;
+      }
+
+      // Tablet
+      @media (max-width: 1119px) {
+        width: 301px;
       }
     }
   }

@@ -241,10 +241,20 @@ body {
   pointer-events: all;
 }
 
-/* Container for the main image and thumbnails */
+/*
+  Gallery Layout Styles
+  ----------------------
+  This stylesheet defines the styles for the responsive image gallery component.
+  It includes layout, thumbnail interactions, and mobile-friendly slide animations.
+*/
 .gallery-container {
   width: 448px;
   margin-right: 128px;
+  /*
+    Thumbnails Section
+    ------------------
+    Visible only on desktop. Includes hover and selected effects.
+  */
 }
 @media (max-width: 1119px) {
   .gallery-container {
@@ -254,6 +264,39 @@ body {
 }
 .gallery-container .main-img-container {
   position: relative;
+  /*
+    Main Image Styling (desktop & mobile)
+    -------------------------------------
+    The main image is responsive and cropped using object-fit.
+    For specific product images, custom object-position adjustments are made on tablet.
+  */
+  /*
+    Tablet/Mobile Push-Style Slider Wrapper
+    ----------------------------------------
+    Container and animation structure for slide transitions.
+  */
+  /*
+    Arrow Controls
+    --------------
+    Floating navigation buttons for image switching.
+  */
+}
+.gallery-container .main-img-container .main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+@media (max-width: 1119px) {
+  .gallery-container .main-img-container .main-img.product-one {
+    object-position: center 65%;
+  }
+  .gallery-container .main-img-container .main-img.product-two, .gallery-container .main-img-container .main-img.product-three {
+    object-position: center 0;
+  }
+  .gallery-container .main-img-container .main-img.product-four {
+    object-position: center 20%;
+  }
 }
 .gallery-container .main-img-container .image-wrapper {
   width: 100%;
@@ -267,24 +310,29 @@ body {
     aspect-ratio: 2.1/1;
   }
 }
-.gallery-container .main-img-container .image-wrapper .main-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
 @media (max-width: 1119px) {
-  .gallery-container .main-img-container .image-wrapper .main-img.product-one {
-    object-position: center 65%;
+  .gallery-container .main-img-container .slider-push-wrapper {
+    width: 100%;
+    aspect-ratio: 2.1/1;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 32px;
+    position: relative;
+    background-color: #f7f8fd;
   }
-  .gallery-container .main-img-container .image-wrapper .main-img.product-two {
-    object-position: center 0;
+  .gallery-container .main-img-container .slider-push {
+    position: relative;
+    width: 100%;
+    height: 100%;
   }
-  .gallery-container .main-img-container .image-wrapper .main-img.product-three {
-    object-position: center 0;
-  }
-  .gallery-container .main-img-container .image-wrapper .main-img.product-four {
-    object-position: center 20%;
+  .gallery-container .main-img-container .slider-push img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }
 .gallery-container .main-img-container .arrow-controls {
@@ -330,7 +378,6 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  /* Individual thumbnail container */
 }
 .gallery-container .thumbnails .image-wrapper {
   width: 88px;
@@ -341,10 +388,6 @@ body {
   box-sizing: border-box;
   border: 2px solid transparent;
   transition: border-color 0.3s ease;
-  /* The thumbnail image inside the wrapper */
-  /* Overlay layer for white fade effect */
-  /* Hover state: zoom image and fade in overlay */
-  /* Active (selected) thumbnail */
 }
 .gallery-container .thumbnails .image-wrapper .thumbnail-img {
   display: block;
@@ -381,6 +424,47 @@ body {
 .gallery-container .thumbnails .image-wrapper.active .overlay {
   opacity: 0.5;
   transform: scale(1.02);
+}
+
+/*
+  Push Slide Transitions
+  ----------------------
+  CSS classes used by react-transition-group to animate image enter/exit with push effect.
+*/
+.slider-push.next .push-enter {
+  transform: translateX(100%);
+}
+
+.slider-push.next .push-enter-active {
+  transform: translateX(0%);
+  transition: transform 0.4s ease;
+}
+
+.slider-push.next .push-exit {
+  transform: translateX(0%);
+}
+
+.slider-push.next .push-exit-active {
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+.slider-push.prev .push-enter {
+  transform: translateX(-100%);
+}
+
+.slider-push.prev .push-enter-active {
+  transform: translateX(0%);
+  transition: transform 0.4s ease;
+}
+
+.slider-push.prev .push-exit {
+  transform: translateX(0%);
+}
+
+.slider-push.prev .push-exit-active {
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
 }
 
 .card {
@@ -483,11 +567,6 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-@media (max-width: 1119px) {
-  .card .add-to-cart-container .quantity-selector-container {
-    width: 298px;
-  }
-}
 .card .add-to-cart-container .quantity-selector-container .decrement-icon,
 .card .add-to-cart-container .quantity-selector-container .increment-icon {
   width: 12px;
@@ -504,6 +583,11 @@ body {
   font-size: 16px;
   font-weight: 700;
 }
+@media (max-width: 1119px) {
+  .card .add-to-cart-container .quantity-selector-container {
+    width: 298px;
+  }
+}
 .card .add-to-cart-container .add-to-cart-button {
   box-sizing: border-box;
   display: flex;
@@ -518,13 +602,13 @@ body {
   line-height: 26px;
   filter: drop-shadow(0 20px 50px rgba(255, 125, 26, 0.25));
 }
+.card .add-to-cart-container .add-to-cart-button:hover {
+  background-color: #ffab6a;
+}
 @media (max-width: 1119px) {
   .card .add-to-cart-container .add-to-cart-button {
     width: 301px;
   }
-}
-.card .add-to-cart-container .add-to-cart-button:hover {
-  background-color: #ffab6a;
 }
 
 /* Desktop */
