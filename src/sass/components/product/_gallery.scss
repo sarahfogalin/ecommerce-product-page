@@ -33,6 +33,7 @@
       object-fit: cover;
       object-position: center;
 
+      // Image cropping for Tablet + Mobile
       @media (max-width: 1119px) {
         &.product-one {
           object-position: center 65%;
@@ -47,7 +48,7 @@
       }
     }
 
-    // Static image wrapper for desktop layout
+    // Desktop: Static image wrapper
     .image-wrapper {
       width: 100%;
       aspect-ratio: 1 / 1;
@@ -56,8 +57,13 @@
       border-radius: 15px;
 
       // Tablet
-      @media (max-width: 1119px) {
+      @media (min-width: 501px) and (max-width: 1119px) {
         aspect-ratio: 2.1 / 1;
+      }
+
+      // Mobile
+      @media (max-width: 500px) {
+        aspect-ratio: 5 / 4;
       }
     }
 
@@ -91,6 +97,15 @@
         position: absolute;
         top: 0;
         left: 0;
+      }
+    }
+
+    // Mobile only
+    @media (max-width: 500px) {
+      .slider-push-wrapper {
+        aspect-ratio: 5 / 4;
+        margin-bottom: 24px;
+        border-radius: 0;
       }
     }
 

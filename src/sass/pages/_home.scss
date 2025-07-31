@@ -34,5 +34,14 @@
 @media only screen and (max-width: 500px) {
   .container {
     padding: 0;
+
+    .main-page-container {
+      margin-top: 0;
+      .product-container {
+        flex-direction: column;
+        width: 100%;
+        align-items: stretch; /* let children use full inner width */
+      }
+    }
   }
 }
